@@ -1,4 +1,4 @@
-name: Python package
+name: Publish to GitHub Packages
 
 on:
   push:
@@ -7,27 +7,33 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python 3.12
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install setuptools wheel twine
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Build package
         run: |
           python setup.py sdist bdist_wheel
-      - name: Publish package
+
+      - name: Publish to GitHub Packages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TWINE_USERNAME: ${{ github.actor }}
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install twine
-          python -m twine upload --repository-url https://api.github.com/orgs/${{GustafBengtsson}}/packages/pypi/upload dist/*
+          python -m twine upload --repository-url https://upload.github.com/GustafBengtsson/spot-on_schema dist/*

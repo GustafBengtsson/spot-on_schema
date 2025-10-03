@@ -5,6 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="spot-on_schema",
+    url="https://github.com/GustafBengtsson/spot-on_schema",
     version="0.0.1",
     description="Shared SQLAlchemy schema models for spot-on projects",
     author="Gustaf B",
