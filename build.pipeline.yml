@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish to GitHub and PyPI
 
 on:
   push:
@@ -33,7 +33,14 @@ jobs:
 
       - name: Publish to GitHub Packages
         env:
-          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_USERNAME: ${{ secrets.GH_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.GH_PTA }}
         run: |
           python -m twine upload --repository-url https://upload.github.com/GustafBengtsson/spot-on_schema dist/*
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PTA }}
+        run: |
+          python -m twine upload dist/*
