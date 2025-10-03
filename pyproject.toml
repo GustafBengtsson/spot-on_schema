@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spot_on_schema"
+version = "1.0.0"
+description = "Shared SQLAlchemy schema models for spot-on projects"
+authors = [{ name = "Gustaf B" }]
+requires-python = ">=3.8"
+dependencies = ["SQLAlchemy>=1.4"]
+
+[tool.setuptools.packages.find]
+where = ["."]
