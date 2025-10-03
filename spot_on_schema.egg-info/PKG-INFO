@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: spot_on_schema
+Version: 1.0.0
+Summary: Shared SQLAlchemy schema models for spot-on projects
+Author: Gustaf B
+Author-email: gustaf.bengtsson@rise.se
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: SQLAlchemy>=1.4
+Dynamic: author-email
+Dynamic: description-content-type
+Dynamic: requires-python

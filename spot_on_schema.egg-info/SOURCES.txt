@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+setup.py
+spot_on_schema.egg-info/PKG-INFO
+spot_on_schema.egg-info/SOURCES.txt
+spot_on_schema.egg-info/dependency_links.txt
+spot_on_schema.egg-info/requires.txt
+spot_on_schema.egg-info/top_level.txt
